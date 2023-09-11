@@ -11,3 +11,10 @@ def index(request):
         'title': 'Список продуктов'
     }
     return render(request, 'hw/index.html', context)
+
+
+def contact(request):
+    context = {
+        'title': 'Контакты'
+    }
+    return render(request, 'hw/contact.html', context)
