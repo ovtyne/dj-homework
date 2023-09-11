@@ -7,6 +7,7 @@ from hw.models import Product
 def index(request):
     product_list = Product.objects.all()
     context = {
-        'object_list': product_list
+        'object_list': product_list,
+        'title': 'Список продуктов'
     }
     return render(request, 'hw/index.html', context)
