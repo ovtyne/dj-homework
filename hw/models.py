@@ -6,7 +6,7 @@ NULLABLE = {'null': True, 'blank': True}
 # Create your models here.
 class Product(models.Model):
     title = models.CharField(max_length=100, verbose_name='наименование')                              # наименование,
-    description = models.TextField(verbose_name='описание')                                            # описание,
+    description = models.TextField(verbose_name='описание', max_length=100)                                            # описание,
     image = models.ImageField(**NULLABLE)                                                              # изображение,
     category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='категория')    # категория,
     price = models.FloatField(verbose_name='цена')                          # цена за покупку,
