@@ -8,5 +8,5 @@ register = template.Library()
 @stringfilter
 def mediapath(img):
     if img == "":
-        img = 'nothing.webp'
+        img = 'no_foto.jpg'
     return '/media/' + img
