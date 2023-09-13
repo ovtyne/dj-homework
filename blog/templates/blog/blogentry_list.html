@@ -1,0 +1,36 @@
+{% extends 'hw/base.html' %}
+{% load tags %}
+{% block content %}
+<div class="col-12 mb-5">
+    <a class="btn btn-outline-primary" href="{% url 'blog:create' %}">Добавить запись</a>
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    {% for object in object_list %}
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <img src='{% mediapath object.preview %}' height="200" alt="Превью">
+                <p class="card-text">
+                    Заголовок: {{ object.title }} <br>
+                    Дата создания: {{ object.creation_date }} <br>
+                    Опубликовано: {{ object.is_published }} <br>
+                    Просмотров: {{ object.view_counter }} <br>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="{% url 'blog:detail_view' object.pk %}"
+                     class="btn btn-sm btn-outline-secondary">View</a>
+                  <a href="{% url 'blog:update' object.pk %}"
+                     class="btn btn-sm btn-outline-secondary">Edit</a>
+                  <a href="{% url 'blog:delete' object.pk %}"
+                     class="btn btn-sm btn-outline-secondary">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
