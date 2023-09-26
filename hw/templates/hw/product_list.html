@@ -18,6 +18,10 @@
                     Дата создание: {{ object.creation_date }} <br>
                     Изменено: {{ object.change_date }} <br>
                 </p>
+                {% if object.active_version_name != None %}
+                    Активная версия: {{ object.active_version_number }}<br>
+                    Название версии: "{{ object.active_version_name }}"
+                {% endif %}
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <a href="{% url 'hw:detail_view' object.pk %}"
@@ -26,6 +30,8 @@
                      class="btn btn-sm btn-outline-secondary">Edit</a>
                   <a href="{% url 'hw:delete' object.pk %}"
                      class="btn btn-sm btn-outline-secondary">Delete</a>
+                  <a href="{% url 'hw:add_version' object.pk %}"
+                     class="btn btn-sm btn-outline-secondary">Добавить версию</a>
                     </div>
                 </div>
             </div>

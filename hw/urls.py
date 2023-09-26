@@ -2,7 +2,7 @@ from django.urls import path
 
 from hw.apps import HwConfig
 from hw.views import contact, ProductListView, ProductCreateView, ProductDetailView, ProductUpdateView, \
-    ProductDeleteView
+    ProductDeleteView, VersionCreateView
 
 app_name = HwConfig.name
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('', ProductListView.as_view(), name='index'),
     path('edit/<int:pk>', ProductUpdateView.as_view(), name='update'),
     path('delete/<int:pk>', ProductDeleteView.as_view(), name='delete'),
+    path('add_version/<int:pk>', VersionCreateView.as_view(), name='add_version'),
     path('contact/', contact, name='contact'),
 
 
