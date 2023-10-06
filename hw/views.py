@@ -11,6 +11,12 @@ class ProductCreateView(CreateView):
     form_class = ProductForm
     success_url = reverse_lazy('hw:index')
 
+    def form_valid(self, form):
+        product = form.save()
+        product.owner = self.request.user
+        product.save()
+        return super().form_valid(form)
+
 
 class ProductListView(ListView):
     model = Product
@@ -33,6 +39,11 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
 
 
 class ProductUpdateView(UpdateView):

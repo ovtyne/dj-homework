@@ -14,7 +14,7 @@ class VersionForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('title', 'description', 'image', 'category', 'price')
 
     def clean_title(self):
         cleaned_data = self.cleaned_data.get('title')

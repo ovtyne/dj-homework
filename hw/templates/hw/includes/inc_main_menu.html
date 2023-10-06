@@ -4,5 +4,32 @@
         <li><a href="{% url 'hw:index' %}" class="text-white">Главная</a></li>
         <li><a href="{% url 'hw:contact' %}" class="text-white">Контакты</a></li>
         <li><a href="{% url 'blog:list_view' %}" class="text-white">Блог</a></li>
+
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'users:logout' %}" class="text-white">Выйти</a></li>
+            <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>
+            <li><a href="{% url 'users:genpassword' %}" class="text-white">Сменить пароль</a></li>
+        {% else %}
+            <li><a href="{% url 'users:login' %}" class="text-white">Войти</a></li>
+            <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
+        {% endif %}
     </ul>
 </div>
+
+
+
+{#<div class="col-sm-4 offset-md-1 py-4">#}
+{#    <h4>Меню</h4>#}
+{#    <ul class="list-unstyled">#}
+{#        <li><a href="{% url 'main:list_student' %}" class="text-white">Главная</a></li>#}
+{#        <li><a href="{% url 'materials:list' %}" class="text-white">Материалы</a></li>#}
+{#        {% if user.is_authenticated %}#}
+{#            <li><a href="{% url 'users:logout' %}" class="text-white">Выйти</a></li>#}
+{#            <li><a href="{% url 'users:profile' %}" class="text-white">Профиль</a></li>#}
+{#        {% else %}#}
+{#            <li><a href="{% url 'users:login' %}" class="text-white">Войти</a></li>#}
+{#            <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>#}
+{#        {% endif %}#}
+{#        <li><a href="{% url 'main:contact' %}" class="text-white">Контакты</a></li>#}
+{#    </ul>#}
+{#</div>#}
