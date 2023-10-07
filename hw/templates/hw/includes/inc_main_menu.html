@@ -4,6 +4,7 @@
         <li><a href="{% url 'hw:index' %}" class="text-white">Главная</a></li>
         <li><a href="{% url 'hw:contact' %}" class="text-white">Контакты</a></li>
         <li><a href="{% url 'blog:list_view' %}" class="text-white">Блог</a></li>
+        <li><a href="{% url 'hw:categories' %}" class="text-white">Категории</a></li>
 
         {% if user.is_authenticated %}
             <li><a href="{% url 'users:logout' %}" class="text-white">Выйти</a></li>
@@ -15,7 +16,6 @@
         {% endif %}
     </ul>
 </div>
-
 
 
 {#<div class="col-sm-4 offset-md-1 py-4">#}

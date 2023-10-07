@@ -2,12 +2,12 @@
 {% load tags %}
 {% block content %}
     <div class="col-12 mb-5">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated or not_auth_access %}
             <a class="btn btn-outline-primary" href="{% url 'hw:create' %}">Добавить продукт</a>
         {% endif %}
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated or not_auth_access %}
             {% for object in object_list %}
                 <div class="col">
                     <div class="card shadow-sm">

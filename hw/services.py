@@ -1,17 +1,16 @@
 from django.conf import settings
 from django.core.cache import cache
 
-from hw.models import Product
+from hw.models import Category
 
 
-def get_cached_subjects_for_student(product_pk):
+def get_categories_from_cache():
+    queryset = Category.objects.all()
     if settings.CACHE_ENABLED:
-        key = f'users_list_{object.pk}'
-        users_list = cache.get(key)
-        if users_list is None:
-            users_list = Product.objects.filter(product__pk=product_pk)
-            cache.set(key, users_list)
-    else:
-        subject_list = Product.objects.filter(product__pk=product_pk)
+        key = 'category'
+        cache_data = cache.get(key)
+        if cache_data is None:
+            cache_data = queryset
+            cache.set(key, cache_data)
 
-    return users_list
+    return queryset

@@ -1,0 +1,13 @@
+{% extends 'hw/base.html' %}
+{% load tags %}
+{% block content %}
+        <div class="col">
+            <div class="row">
+                {% for category in categories %}
+                    {{ category }} <br>
+                {% endfor %}
+            </div>
+            <br>
+        </div>
+{% endblock %}
+

@@ -1,9 +1,17 @@
+import os
+from dotenv import load_dotenv
+
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
+from config.settings import BASE_DIR
 from hw.forms import ProductForm, VersionForm
-from hw.models import Product, Version
+from hw.models import Product, Version, Category
+from hw.services import get_categories_from_cache
+
+dot_env = os.path.join(BASE_DIR, '.env')
+load_dotenv(dotenv_path=dot_env)
 
 
 class ProductCreateView(CreateView):
@@ -24,6 +32,8 @@ class ProductListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Список продуктов'
+        aaa = os.getenv('IS_NOT_AUTH_ACCESS') == 'True'
+        context['not_auth_access'] = aaa
 
         for product in context['object_list']:
             active_version = product.version_set.filter(is_current=True).first()
@@ -65,6 +75,19 @@ class VersionCreateView(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Добавление версии продукта'
+
+        return context
+
+
+class CategoryListView(ListView):
+    model = Category
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Категории'
+
+        categories = get_categories_from_cache()
+        context['categories'] = categories
 
         return context
 
